@@ -706,15 +706,38 @@
 
             .hero {
                 min-height: auto;
-                padding: 2rem 2rem 1.5rem;
+                padding: 1rem 1rem 0.5rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero-image {
+                height: 200px;
+            }
+
+            .phone-mockup-3d {
+                width: 120px;
+                height: 240px;
+                padding: 8px;
+            }
+
+            .badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+                margin-bottom: 0.8rem;
             }
 
             .hero-text h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
             }
 
             .hero-text p {
-                font-size: 1rem;
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
             }
 
             .features h2,
@@ -726,19 +749,77 @@
 
             .cta-buttons {
                 flex-direction: column;
+                gap: 0.8rem;
             }
 
             .btn {
                 width: 100%;
                 text-align: center;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
 
             .scroll-indicator {
-                bottom: 1rem;
+                bottom: 0.5rem;
             }
 
             .scroll-indicator p {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .navbar-download {
+                font-size: 0.7rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .hero {
+                padding: 0.8rem 0.8rem 0.3rem;
+            }
+
+            .hero-image {
+                height: 160px;
+            }
+
+            .phone-mockup-3d {
+                width: 100px;
+                height: 200px;
+                padding: 6px;
+            }
+
+            .badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.2rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .hero-text p {
                 font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .cta-buttons {
+                gap: 0.6rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
             }
         }
     </style>
