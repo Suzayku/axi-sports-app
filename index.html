@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axi Sports App - Professional 3D Experience</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/cannon@0.20.0/build/cannon.js"></script>
+    <title>Axi Sports App - Professional Sports Streaming</title>
     <style>
         * {
             margin: 0;
@@ -22,17 +20,7 @@
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
-            background: #0a0e27;
-        }
-
-        #canvas3d {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-            display: block;
+            background: #ffffff;
         }
 
         .content-wrapper {
@@ -42,14 +30,13 @@
 
         /* Navbar */
         .navbar {
-            background: rgba(10, 14, 39, 0.7);
-            backdrop-filter: blur(15px);
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             padding: 1.2rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .navbar-content {
@@ -61,7 +48,7 @@
         }
 
         .logo {
-            color: #fff;
+            color: #1e3c72;
             font-size: 1.8rem;
             font-weight: 800;
             text-decoration: none;
@@ -78,7 +65,7 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: #666;
             text-decoration: none;
             transition: all 0.3s;
             font-weight: 500;
@@ -101,7 +88,7 @@
         }
 
         .nav-links a:hover {
-            color: #fff;
+            color: #667eea;
         }
 
         /* Navbar Download Button */
@@ -127,46 +114,14 @@
 
         /* Scroll Down Indicator */
         .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 20;
-            animation: bounce-arrow 2s ease-in-out infinite;
             display: none;
-        }
-
-        .scroll-indicator p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            margin: 0 auto;
-            stroke: rgba(255, 255, 255, 0.7);
-            fill: none;
-            stroke-width: 2;
-        }
-
-        @keyframes bounce-arrow {
-            0%, 100% {
-                opacity: 0.7;
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(8px);
-            }
         }
 
         /* Hero Section */
         .hero {
             min-height: 70vh;
-            padding: 2rem 2rem 2rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
             position: relative;
             display: flex;
@@ -175,29 +130,29 @@
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
+            text-align: center;
         }
 
         .hero-text h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
             animation: slideInLeft 1s ease;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             line-height: 1.1;
+            font-weight: 800;
         }
 
         .hero-text p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: slideInLeft 1s ease 0.2s backwards;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 100%;
+            line-height: 1.8;
+        }
             opacity: 0.95;
             animation: slideInLeft 1s ease 0.2s backwards;
             color: rgba(255, 255, 255, 0.9);
@@ -227,71 +182,7 @@
         }
 
         .hero-image {
-            animation: slideInRight 1s ease;
-            perspective: 1000px;
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .phone-mockup-3d {
-            width: 180px;
-            height: 360px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 50px;
-            padding: 12px;
-            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3), 
-                        0 0 100px rgba(102, 126, 234, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateX(5deg); }
-            50% { transform: translateY(-20px) rotateX(5deg); }
-        }
-
-        .phone-mockup-3d::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 30px;
-            background: #1a1a2e;
-            border-radius: 0 0 25px 25px;
-            z-index: 10;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .phone-screen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 50%);
-            border-radius: 40px;
-            pointer-events: none;
+            display: none;
         }
 
         /* CTA Buttons */
@@ -1277,8 +1168,6 @@
     </style>
 </head>
 <body>
-    <canvas id="canvas3d"></canvas>
-    
     <div class="content-wrapper">
         <!-- Navbar -->
     <nav class="navbar">
@@ -1297,25 +1186,14 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <div class="badge">⚡ Latest Version 2.0 - 3D Ready</div>
-                <h1>Experience Sports in 3D</h1>
-                <p>Watch live sports anytime, anywhere. Stream every type of sports in crystal-clear quality with our advanced 3D streaming technology. Football, Basketball, Cricket, Tennis, and more - all in one professional app!</p>
+                <div class="badge">⚡ Latest Version 2.0 - Professional App</div>
+                <h1>Experience Sports Like Never Before</h1>
+                <p>Watch live sports anytime, anywhere with crystal-clear quality. Stream football, basketball, cricket, tennis, and 100+ sports from around the world - all in one professional app!</p>
                 <div class="cta-buttons">
                     <a href="https://github.com/Suzayku/axi-sports-app/releases/download/v1.0.0/app-release.apk" class="btn btn-primary">📱 Download APK</a>
                     <a href="#features" class="btn btn-secondary">Learn More</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="phone-mockup-3d">
-                    <div class="phone-screen">🏆</div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <p>Scroll to explore</p>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
         </div>
     </section>
 
@@ -1466,144 +1344,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Axi Sports App - Professional 3D Edition. All rights reserved. | <a href="https://github.com/Suzayku/axi-sports-app">View on GitHub</a></p>
+        <p>&copy; 2024 Axi Sports App - Professional Edition. All rights reserved. | <a href="https://github.com/Suzayku/axi-sports-app">View on GitHub</a></p>
     </footer>
     </div>
-
-    <script>
-        // Three.js 3D Scene Setup
-        const canvas = document.getElementById('canvas3d');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x0a0e27, 1);
-        
-        camera.position.z = 50;
-
-        // Create 3D background with animated particles
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 200;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for (let i = 0; i < particlesCount * 3; i += 3) {
-            posArray[i] = (Math.random() - 0.5) * 200;
-            posArray[i + 1] = (Math.random() - 0.5) * 200;
-            posArray[i + 2] = (Math.random() - 0.5) * 200;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.5,
-            color: 0x667eea,
-            sizeAttenuation: true,
-            transparent: true,
-            opacity: 0.6
-        });
-
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-
-        // Create floating cubes
-        const cubesGroup = new THREE.Group();
-        
-        for (let i = 0; i < 5; i++) {
-            const geometry = new THREE.BoxGeometry(5, 5, 5);
-            const material = new THREE.MeshPhongMaterial({
-                color: 0x667eea,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.3
-            });
-            
-            const cube = new THREE.Mesh(geometry, material);
-            cube.position.x = (Math.random() - 0.5) * 150;
-            cube.position.y = (Math.random() - 0.5) * 150;
-            cube.position.z = (Math.random() - 0.5) * 150;
-            cube.rotation.x = Math.random() * Math.PI;
-            cube.rotation.y = Math.random() * Math.PI;
-            
-            cube.userData.rotationSpeed = {
-                x: (Math.random() - 0.5) * 0.02,
-                y: (Math.random() - 0.5) * 0.02,
-                z: (Math.random() - 0.5) * 0.02
-            };
-            
-            cubesGroup.add(cube);
-        }
-        
-        scene.add(cubesGroup);
-
-        // Create wireframe sphere
-        const sphereGeometry = new THREE.IcosahedronGeometry(30, 4);
-        const sphereMaterial = new THREE.MeshPhongMaterial({
-            color: 0x764ba2,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.1
-        });
-        
-        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-        sphere.position.z = -50;
-        scene.add(sphere);
-
-        // Lighting
-        const light = new THREE.PointLight(0xffffff, 1);
-        light.position.set(0, 0, 100);
-        scene.add(light);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Rotate particles
-            if (particlesMesh) {
-                particlesMesh.rotation.x += 0.0001;
-                particlesMesh.rotation.y += 0.0001;
-            }
-
-            // Animate cubes
-            cubesGroup.children.forEach((cube) => {
-                cube.rotation.x += cube.userData.rotationSpeed.x;
-                cube.rotation.y += cube.userData.rotationSpeed.y;
-                cube.rotation.z += cube.userData.rotationSpeed.z;
-            });
-
-            // Rotate sphere
-            sphere.rotation.x += 0.0001;
-            sphere.rotation.y += 0.0002;
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Scroll effect
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            particlesMesh.rotation.z += scrollPercent * 0.01;
-        });
-
-        // Mouse move effect
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 2 - 1;
-            const y = -(e.clientY / window.innerHeight) * 2 + 1;
-            
-            camera.position.x = x * 5;
-            camera.position.y = y * 5;
-        });
-    </script>
 </body>
 </html>
