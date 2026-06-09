@@ -104,6 +104,64 @@
             color: #fff;
         }
 
+        /* Navbar Download Button */
+        .navbar-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            animation: bounce-arrow 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto;
+            stroke: rgba(255, 255, 255, 0.7);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -630,6 +688,20 @@
         }
 
         @media (max-width: 768px) {
+            .navbar-content {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar-download {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.2rem;
+            }
+
             .hero {
                 min-height: auto;
                 padding: 4rem 2rem;
@@ -657,6 +729,14 @@
             .btn {
                 width: 100%;
                 text-align: center;
+            }
+
+            .scroll-indicator {
+                bottom: 1rem;
+            }
+
+            .scroll-indicator p {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -1061,6 +1141,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#download">Download</a></li>
             </ul>
+            <a href="https://github.com/Suzayku/axi-sports-app/releases/download/v1.0.0/app-release.apk" class="navbar-download">📥 Download</a>
         </div>
     </nav>
 
@@ -1081,6 +1162,12 @@
                     <div class="phone-screen">🏆</div>
                 </div>
             </div>
+        </div>
+        <div class="scroll-indicator">
+            <p>Scroll to explore</p>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
         </div>
     </section>
 
